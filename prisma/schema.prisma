@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TipoTransacao {
+  c
+  d
+}
+
+model Cliente {
+  id Int     @id @default(autoincrement())
+  limite Int @default(0)
+  saldo Int @default(0)
+  transacoes Transacao[]
+}
+
+model Transacao {
+  id Int     @id @default(autoincrement())
+  id_cliente Int 
+  valor Int @default(0)
+  tipo TipoTransacao
+  descricao String @db.VarChar(10)
+  realizada_em DateTime @default(now())
+
+  cliente Cliente @relation(fields: [id_cliente], references: [id])
+}
