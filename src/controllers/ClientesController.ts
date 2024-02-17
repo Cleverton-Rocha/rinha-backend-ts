@@ -2,35 +2,9 @@ import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
+import { BodyType, Extrato, ParamsType } from '../utils/types'
+
 const prisma = new PrismaClient()
-
-type ParamsType = {
-  id: string
-}
-
-type BodyType = {
-  valor: number
-  tipo: 'd' | 'c'
-  descricao: string
-}
-
-type Saldo = {
-  total: number
-  data_extrato: string
-  limite: number
-}
-
-type Transacao = {
-  valor: number
-  tipo: 'c' | 'd'
-  descricao: string
-  realizada_em: Date
-}
-
-type Extrato = {
-  saldo: Saldo
-  ultimas_transacoes: Transacao[]
-}
 
 const schema = z.object({
   valor: z.number().int().positive(),
