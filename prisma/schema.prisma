@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -16,19 +17,20 @@ enum TipoTransacao {
 }
 
 model Cliente {
-  id Int     @id @default(autoincrement())
-  limite Int @default(0)
-  saldo Int @default(0)
+  id         Int         @id @default(autoincrement())
+  nome       String
+  limite     Int         @default(0)
+  saldo      Int         @default(0)
   transacoes Transacao[]
 }
 
 model Transacao {
-  id Int     @id @default(autoincrement())
-  id_cliente Int 
-  valor Int @default(0)
-  tipo TipoTransacao
-  descricao String @db.VarChar(10)
-  realizada_em DateTime @default(now())
+  id           Int           @id @default(autoincrement())
+  id_cliente   Int
+  valor        Int           @default(0)
+  tipo         TipoTransacao
+  descricao    String        @db.VarChar(10)
+  realizada_em DateTime      @default(now())
 
   cliente Cliente @relation(fields: [id_cliente], references: [id])
 }
