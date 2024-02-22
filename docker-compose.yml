@@ -22,7 +22,7 @@ services:
           memory: '200MB'
 
   api01: &api
-    image: dockerfile
+    image: ultr444/rinha-backend-api
     hostname: api01
     environment:
       - DATABASE_URL=postgresql://postgres:docker@db-rinha:5432/rinha?schema=public
