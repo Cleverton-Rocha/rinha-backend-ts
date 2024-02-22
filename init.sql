@@ -1,3 +1,4 @@
+CREATE EXTENSION IF NOT EXISTS pg_prewarm;
 
 CREATE TYPE public."TipoTransacao" AS ENUM ('c', 'd');
 
@@ -25,3 +26,7 @@ VALUES
   ('les cruders', 10000 * 100),
   ('padaria joia de cocaia', 100000 * 100),
   ('kid mais', 5000 * 100);
+  
+SELECT pg_prewarm ('public."Cliente"');
+
+SELECT pg_prewarm ('public."Transacao"');
