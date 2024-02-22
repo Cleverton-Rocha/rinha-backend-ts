@@ -1,12 +1,12 @@
 import Fastify from 'fastify'
 
-import ClientesController from './controller/ClientesController'
+import ClientesControllers from './controller/ClienteController'
 
 const fastify = Fastify({
-  logger: true,
+  logger: false,
 })
 
-fastify.register(ClientesController)
+fastify.register(ClientesControllers)
 
 const start = async () => {
   try {
