@@ -21,7 +21,7 @@ model Cliente {
   nome       String
   limite     Int         @default(0)
   saldo      Int         @default(0)
-  transacoes Transacao[]
+  transacao Transacao[]
 }
 
 model Transacao {
