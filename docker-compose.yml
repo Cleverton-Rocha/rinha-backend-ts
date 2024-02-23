@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgres:
     container_name: rinha-pg
-    image: postgres
+    image: postgres:latest
     hostname: db-rinha
     ports:
       - 5432:5432
@@ -22,15 +22,13 @@ services:
           memory: '200MB'
 
   api01: &api
-    image: ultr444/rinha-backend-api
+    image: ultr444/rinha-backend-api:latest
     hostname: api01
     environment:
       - DATABASE_URL=postgresql://postgres:docker@db-rinha:5432/rinha?schema=public
       - PORT=3000
     ports:
       - '8080:3000'
-    build:
-      context: .
     depends_on:
       - postgres
     deploy:
